@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import with_statement, absolute_import, unicode_literals
+from __future__ import with_statement, unicode_literals
 import os
 import pprint
 import re
@@ -81,7 +81,7 @@ def make_temp_directory():
 
 
 def build_documentation(branch):
-    docs_src = os.path.join(app.config["REPO"], "docs")
+    docs_src = os.path.join(app.config["REPO"])
     output = os.path.join(app.config["OUTPUT"], branch)
     with make_temp_directory() as temp_dir:
         execute("mkdir", "-p", output)
@@ -102,3 +102,30 @@ def compare_digest(a, b):
     for ch_a, ch_b in zip(a, b):
         result |= ord(ch_a) ^ ord(ch_b)
     return result == 0
+
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='Run application ')
+    parser.add_argument('-p', '--port', action="store", default=9090, type=int,
+                        help='Set the listening port')
+    parser.add_argument('-b', '--bind', action="store", default="0.0.0.0",
+                        help='Set the binding address')
+    parser.add_argument('-r', '--repo', action="store", required=True,
+                        help='Set the local repository path')
+    parser.add_argument('-o', '--output', action="store", required=True,
+                        help='Set the local repository to save documentation')
+    parser.add_argument('--branches', nargs='+', required=True,
+                        help='List of branches to watch')
+    parser.add_argument('--secret', action="store", default="",
+                        help='Secret key')
+
+    parser.add_argument('--debug', action="store_true", default=False,
+                        help='Enable debugger')
+    args = parser.parse_args()
+
+    app.config["REPO"] = os.path.join(os.getcwd(), args.repo)
+    app.config["OUTPUT"] = os.path.join(os.getcwd(), args.output)
+    app.config["BRANCHES"] = args.branches
+    app.config["SECRET_KEY"] = args.secret
+    app.run(host=args.bind, port=args.port, processes=1, debug=args.debug)
