@@ -29,8 +29,8 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
-    license="GNU GPL",
     description='Build Sphinx Documentation from Github webhooks.',
+    license="BSD",
     classifiers=[
         'Development Status :: 1 - Planning',
         'Operating System :: OS Independent',
