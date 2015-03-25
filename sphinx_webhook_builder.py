@@ -86,6 +86,7 @@ def build_documentation(branch):
     output = os.path.join(app.config["OUTPUT"], branch)
     with make_temp_directory() as temp_dir:
         execute("mkdir", "-p", output)
+        execute("git", "checkout", branch, cwd=docs_src)
         execute("make", "html", "BUILDDIR=%s" % temp_dir, cwd=docs_src)
         execute("rsync", "-avh", "./html/", output, cwd=temp_dir)
 
