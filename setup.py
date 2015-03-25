@@ -12,7 +12,7 @@ def read(filename):
 
 def get_version():
     return re.compile(r".*__version__ = '(.*?)'", re.S)\
-             .match(read('sphinx-webhook-builder.py')).group(1)
+             .match(read('sphinx_webhook_builder.py')).group(1)
 
 
 setup(
@@ -21,7 +21,7 @@ setup(
     author_email='salem.harrache@inria.fr',
     version=get_version(),
     url='https://github.com/oar-team/sphinx-webhook-builder',
-    py_modules=['sphinx-webhook-builder'],
+    py_modules=['sphinx_webhook_builder'],
     install_requires=[
         'flask',
         'ipaddress',
