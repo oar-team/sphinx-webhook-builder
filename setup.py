@@ -24,8 +24,6 @@ setup(
     py_modules=['sphinx_webhook_builder'],
     install_requires=[
         'flask',
-        'ipaddress',
-        'requests',
     ],
     include_package_data=True,
     zip_safe=False,

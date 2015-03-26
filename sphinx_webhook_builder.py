@@ -7,8 +7,6 @@ import re
 import json
 import shutil
 import subprocess
-import requests
-import ipaddress
 import hmac
 import contextlib
 import tempfile
@@ -31,17 +29,6 @@ if os.environ.get('USE_PROXYFIX', None):
 
 @app.route("/", methods=['POST'])
 def index():
-    # Store the IP address blocks that github uses for hook requests.
-    hook_blocks = requests.get('https://api.github.com/meta').json()['hooks']
-
-    # Check if the POST request if from github.com
-    for block in hook_blocks:
-        ip = ipaddress.ip_address('%s' % request.remote_addr)
-        if ip in ipaddress.ip_network(block):
-            break  # the remote_addr is within the network range of github
-    else:
-        abort(403)
-
     if request.headers.get('X-GitHub-Event') == "ping":
         return json.dumps({'msg': 'Hi!'})
     if request.headers.get('X-GitHub-Event') != "push":
