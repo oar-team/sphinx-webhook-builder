@@ -92,8 +92,7 @@ def compare_digest(a, b):
         result |= ord(ch_a) ^ ord(ch_b)
     return result == 0
 
-
-if __name__ == '__main__':
+def main():
     import argparse
     parser = argparse.ArgumentParser(description='Run application ')
     parser.add_argument('-p', '--port', action="store", default=9090, type=int,
@@ -118,3 +117,7 @@ if __name__ == '__main__':
     app.config["BRANCHES"] = args.branches
     app.config["SECRET_KEY"] = args.secret
     app.run(host=args.bind, port=args.port, processes=1, debug=args.debug)
+
+
+if __name__ == '__main__':
+    main()

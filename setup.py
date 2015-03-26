@@ -40,4 +40,8 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: System :: Clustering',
     ],
+    entry_points='''
+        [console_scripts]
+        sphinx_webhook_builder=sphinx_webhook_builder:main
+    ''',
 )
