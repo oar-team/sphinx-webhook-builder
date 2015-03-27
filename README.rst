@@ -1,5 +1,5 @@
 Sphinx Webhook Server
-======================
+=====================
 
 Build Sphinx documentation from Github webhooks. Inspired by and based on `github-webhook-handler`_
 
