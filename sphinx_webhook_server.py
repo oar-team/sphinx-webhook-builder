@@ -52,8 +52,8 @@ def index():
         branch = match.groupdict()['branch']
         if branch in app.config["BRANCHES"]:
             build_documentation(branch)
-            return "Done!"
-    return "Nothing to do"
+            return json.dumps({'msg': 'Done!'})
+    return json.dumps({'msg': 'Nothing to do'})
 
 
 def execute(*command, **kwargs):
