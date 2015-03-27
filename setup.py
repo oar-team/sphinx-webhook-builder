@@ -42,6 +42,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        sphinx_webhook_builder=sphinx_webhook_builder:main
+        sphinx-webhook-server=sphinx_webhook_builder:main
     ''',
 )
