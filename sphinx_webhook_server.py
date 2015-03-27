@@ -15,7 +15,7 @@ from hashlib import sha1
 from flask import Flask, request, abort
 
 
-__version__ = '0.1-dev'
+__version__ = '0.1'
 VERSION = __version__
 
 
@@ -94,7 +94,7 @@ def compare_digest(a, b):
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description='Run application ')
+    parser = argparse.ArgumentParser(description='Run the server')
     parser.add_argument('-p', '--port', action="store", default=9090, type=int,
                         help='Set the listening port')
     parser.add_argument('-b', '--bind', action="store", default="0.0.0.0",
