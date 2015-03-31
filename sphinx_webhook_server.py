@@ -92,6 +92,7 @@ def compare_digest(a, b):
         result |= ord(ch_a) ^ ord(ch_b)
     return result == 0
 
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Run the server')
